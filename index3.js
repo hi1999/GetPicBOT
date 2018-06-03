@@ -195,7 +195,7 @@ bot.on('message', function (event) {
                     var iTimes=row.get_times;
                     if(iTimes=="30"||iTimes=="35"){
                         event.reply({
-                            type: 'template',
+                           /* type: 'template',
                             altText: 'this is a confirm template',
                             template: {
                                 type: 'confirm',
@@ -209,7 +209,7 @@ bot.on('message', function (event) {
                                 label: 'No',
                                 text: 'no'
                             }]
-                        }
+                        }*/
                     });
                 }
             }
