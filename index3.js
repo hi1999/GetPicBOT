@@ -104,7 +104,15 @@ bot.on('message', function (event) {
     console.log('userId==>', event.source.userId);
     console.log('==================');
     if(event.message.text=='抽'){
+    client.query("SELECT get_times FROM public.user_history_record where user_id= '"+event.source.userId+"'", (err2, res) => {
+                    if (err2) throw err2;
+                       for (let row of res.rows) {            
+                            var iTimes=row.get_times;           
+                            if(iTimes=="25"||iTimes=="30"){    
+                             
+                            }
     ////////////////////////
+                           else{
         console.log('取得相簿裡的所有照片');
         var request = require('request');
 
@@ -156,7 +164,8 @@ bot.on('message', function (event) {
             }
         });
 //////////////////////////////////////////////    
-    }
+                           }
+                           }
 });
 
 
