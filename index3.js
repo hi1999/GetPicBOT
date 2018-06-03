@@ -109,8 +109,11 @@ bot.on('message', function (event) {
                     if (err2) throw err2;
                        for (let row of res.rows) {            
                              iTimes=row.get_times;
+                           console.log('iTimes:'+iTimes);
                        }
          });
+        
+                           console.log('iTimes:'+iTimes);
             if(iTimes=="25"||iTimes=="30"){    
                              
                             }
