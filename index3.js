@@ -115,10 +115,12 @@ bot.on('message', function (event) {
         
                            console.log('iTimes:'+iTimes);
             if(iTimes=="25"||iTimes=="30"){    
-                             
+                             console.log('Share');
                             }
     ////////////////////////
              if(iTimes!="25" && iTimes!="30")              {
+                 
+                             console.log('Picture');
         console.log('取得相簿裡的所有照片');
         var request = require('request');
 
