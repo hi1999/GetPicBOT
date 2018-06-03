@@ -103,90 +103,93 @@ bot.on('message', function (event) {
     console.log('replyToken==>', event.replyToken);
     console.log('userId==>', event.source.userId);
     console.log('==================');
-    if(event.message.text=='抽'){
-    var iTimes=0;
-    client.query("SELECT get_times FROM public.user_history_record where user_id= '"+event.source.userId+"'", (err2, res) => {
-        if (err2) throw err2;
-        for (let row of res.rows) {            
-            iTimes=row.get_times;
-            console.log('iTimes:'+iTimes);
-//      }
-//  });
-        
-
-            if(iTimes=="35"||iTimes=="40"){    
-              console.log('Share');
-            }
+        if(event.message.text=='抽'){
     ////////////////////////
-            if(iTimes!="25" && iTimes!="30"){
-                console.log('Picture');
-                console.log('取得相簿裡的所有照片');
-                var request = require('request');
-                var options = {
-                    url: 'https://api.imgur.com/3/album/BJNxWqK/images',
-                    headers: { 'Authorization': 'Client-ID d09fd3905abd246' }
-                };
-                function callback(error, response, body) {
-                    if (!error && response.statusCode == 200) {
-                        var info = JSON.parse(body);
-                        console.log(info.data[Math.floor(Math.random()*info.data.length)].link);
-                        console.log('傳遞卡片');
-                        event.reply({
-                            "type": "image",
-                            "originalContentUrl": info.data[Math.floor(Math.random()*info.data.length)].link,
-                            "previewImageUrl": info.data[Math.floor(Math.random()*info.data.length)].link
-                        });
-                    }
-                }
-                request(options, callback);
-                ////////////////      
-                client.query("UPDATE public.user_history_record SET get_times=get_times+1 WHERE user_id = '"+event.source.userId+"'", (err2, res) => {
-                    if (err2) throw err2;
+        console.log('取得相簿裡的所有照片');
+        var request = require('request');
+        var options = {
+            url: 'https://api.imgur.com/3/album/ZaDbl2w/images',
+            headers: { 'Authorization': 'Client-ID c5059e019ff8903' }
+        };
+        function callback(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                var info = JSON.parse(body);
+                console.log(info.data[Math.floor(Math.random()*info.data.length)].link);
+                console.log('傳遞卡片');
+                //需要再加入隨機功能
+                 event.reply({
+                    "type": "image",
+                    "originalContentUrl": info.data[Math.floor(Math.random()*info.data.length)].link,
+                    "previewImageUrl": info.data[Math.floor(Math.random()*info.data.length)].link
                 });
-         // }
-                client.query("SELECT count(*) FROM public.users_daily_record where user_id='"+event.source.userId+"-"+iMonth+"-"+iDay+"';", (err, res) => {    
-                    if (err) throw err;
-                    for (let row of res.rows) {
-                        var bExist=row.count;
-                        console.log("回傳資料:"+event.source.userId+"-"+iMonth+"-"+iDay);
-                        console.log(JSON.stringify(row));
-                        if(bExist=="0"){
-                            console.log("新增一筆資料");
-                            client.query(
-                            'INSERT into public.users_daily_record (user_id, get_date, get_times) VALUES($1, $2, $3) ',
-                            [event.source.userId+"-"+iMonth+"-"+iDay, new Date(), 1],
-                            function (err1, result) {
-                                if (err1) throw err1;
-                            });
-                        }
-                        if(bExist=="1"){
-                            console.log("更新一筆資料"); 
-                            client.query("UPDATE public.users_daily_record SET get_times=get_times+1 WHERE user_id = '"+event.source.userId+"-"+iMonth+"-"+iDay+"'", (err2, res) => {
-                                if (err2) throw err2;
-                            });
-                        }
-                    }
-                });
-//////////////////////////////////////////////    
             }
         }
-    });
-    });
-
-
+        request(options, callback);
+        ////////////////////////      
+        client.query("SELECT get_times FROM public.user_history_record where user_id= '"+event.source.userId+"'", (err2, res) => {
+            if (err2) throw err2;
+                for (let row of res.rows) {
+                    var iTimes=row.get_times;
+                    if(iTimes=="30"||iTimes=="35"){
+                        event.reply({
+                            type: 'template',
+                            altText: 'this is a confirm template',
+                            template: {
+                                type: 'confirm',
+                                text: 'Are you sure?',
+                                actions: [{
+                                type: 'message',
+                                label: 'Yes',
+                                text: 'yes'
+                            }, {
+                                type: 'message',
+                                label: 'No',
+                                text: 'no'
+                            }]
+                        }
+                    });
+                }
+            }
+        });
+        ////////////////////////      
+        client.query("UPDATE public.user_history_record SET get_times=get_times+1 WHERE user_id = '"+event.source.userId+"'", (err2, res) => {
+                   if (err2) throw err2;
+              });
+         // }
+        client.query("SELECT count(*) FROM public.users_daily_record where user_id='"+event.source.userId+"-"+iMonth+"-"+iDay+"';", (err, res) => {    
+            if (err) throw err;
+            for (let row of res.rows) {
+                var bExist=row.count;
+                console.log("回傳資料:"+event.source.userId+"-"+iMonth+"-"+iDay);
+                console.log(JSON.stringify(row));
+                if(bExist=="0"){
+                    console.log("新增一筆資料");
+                    client.query(
+                    'INSERT into public.users_daily_record (user_id, get_date, get_times) VALUES($1, $2, $3) ',
+                    [event.source.userId+"-"+iMonth+"-"+iDay, new Date(), 1],
+                    function (err1, result) {
+                        if (err1) throw err1;
+                    });
+                }
+                if(bExist=="1"){
+                    console.log("更新一筆資料"); 
+                    client.query("UPDATE public.users_daily_record SET get_times=get_times+1 WHERE user_id = '"+event.source.userId+"-"+iMonth+"-"+iDay+"'", (err2, res) => {
+                        if (err2) throw err2;
+                    });
+                }
+            }
+        });
+//////////////////////////////////////////////    
+    }
+});
 
 
 //此行抽圖OK但加入後報表不行run
 //client.end();   
-
-
-
-
-
-const app = express();
-const linebotParser = bot.parser();
-app.post('/', linebotParser);
-var server = app.listen(process.env.PORT || 8080, function () {
+const app=express();
+const linebotParser=bot.parser();
+app.post('/',linebotParser);
+var server=app.listen(process.env.PORT|| 8080, function () {
     var port = server.address().port;
     console.log("App now running on port", port);
 });
