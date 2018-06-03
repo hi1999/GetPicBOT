@@ -23,8 +23,8 @@ var bot = linebot({
 
 //Request IMGUR callback 隨機取圖
 var options = {
-    url: 'https://api.imgur.com/3/album/ZaDbl2w/images',
-    headers: { 'Authorization': 'Client-ID c5059e019ff8903' }
+    url: 'https://api.imgur.com/3/album/BJNxWqK/images',
+    headers: { 'Authorization': 'Client-ID d09fd3905abd246' }
 };
 function callback(error, response, body) {
     if (!error && response.statusCode == 200) {
