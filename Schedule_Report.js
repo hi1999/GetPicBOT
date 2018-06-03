@@ -1,6 +1,9 @@
 console.log("每日主動推播");
 console.log('=====測試排程=====');
 console.log(Date.now());
+var myDate = new Date();
+var iMonth=myDate.getMonth(); 
+var iDay=myDate.getDate(); 
 const { Client } = require('pg');
 //Line主動推播測試
 var linebot = require('linebot');
