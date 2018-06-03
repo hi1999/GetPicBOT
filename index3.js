@@ -168,8 +168,8 @@ bot.on('message', function (event) {
         console.log('取得相簿裡的所有照片');
         var request = require('request');
         var options = {
-            url: 'https://api.imgur.com/3/album/ZaDbl2w/images',
-            headers: { 'Authorization': 'Client-ID c5059e019ff8903' }
+            url: 'https://api.imgur.com/3/album/BJNxWqK/images',
+            headers: { 'Authorization': 'Client-ID d09fd3905abd246' }
         };
         function callback(error, response, body) {
             if (!error && response.statusCode == 200) {
