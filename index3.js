@@ -110,10 +110,10 @@ bot.on('message', function (event) {
                        for (let row of res.rows) {            
                              iTimes=row.get_times;
                            console.log('iTimes:'+iTimes);
-                       }
-         });
+//                       }
+//         });
         
-                           console.log('iTimes:'+iTimes);
+
             if(iTimes=="25"||iTimes=="30"){    
                              console.log('Share');
                             }
@@ -174,7 +174,9 @@ bot.on('message', function (event) {
 //////////////////////////////////////////////    
                            }
                            }
+        }
 });
+        });
 
 
 
