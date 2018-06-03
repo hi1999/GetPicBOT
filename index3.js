@@ -36,7 +36,7 @@ bot.on('follow', function (event) {
      for (let row of res.rows) {
          var bExist=row.count;
      //    var bExist=row.user_id;
-         console.log("回傳資料:"+bExist);
+         console.log("回傳資料:"+user_id);
          console.log(JSON.stringify(row));
          /////////////////
           if(bExist=="0"){
