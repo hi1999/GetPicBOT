@@ -114,7 +114,7 @@ bot.on('message', function (event) {
 //         });
         
 
-            if(iTimes=="25"||iTimes=="30"){    
+            if(iTimes=="35"||iTimes=="40"){    
                              console.log('Share');
                             }
     ////////////////////////
