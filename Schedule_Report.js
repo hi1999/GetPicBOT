@@ -33,7 +33,7 @@ function callback(error, response, body) {
                     type: 'text',
                     text: repMessage
                 });
-                console.log('\t==>push [' + imgLink+'] ok');
+                console.log('ok');
             }
             client.end();
         });
