@@ -24,9 +24,46 @@ function callback(error, response, body) {
             ssl: true,
         });
         client.connect();
-        var iFriend=0;    
+  
         var repMessage="";  
         const ME = 'Ubb9f5c58d8fc3755bc871dcda17439f6';
+        var iSUM=0;
+            client.query('SELECT SUM(get_times) FROM public.user_history_record;', (err, res) => {    
+                if (err) throw err;
+                for (let row of res.rows) {
+                    iSUM=row.sum;
+                    console.log("抽的總次數:"+iSUM);
+                    console.log(JSON.stringify(row));
+                    console.log('##');
+                }           
+            });
+            var iCOUNT=0;    
+            client.query('SELECT COUNT(*) FROM public.user_history_record where get_times>30;', (err, res) => {    
+                if (err) throw err;
+                for (let row of res.rows) {
+                    iCOUNT=row.count;
+                    console.log('##');
+                }           
+            });
+             var iGetUserToday=0; 
+                    client.query("SELECT COUNT(*) FROM public.users_daily_record where user_id like '%"+iMonth+"-"+iDay+"%';", (err, res) => {    
+                        if (err) throw err;
+                        for (let row of res.rows) {
+                            iGetUserToday=row.count;
+                   
+                            console.log('##');
+                        }           
+                 });
+            var iSumToday=0;
+            client.query("SELECT SUM(get_times) FROM public.users_daily_record where user_id like '%"+iMonth+"-"+iDay+"%';", (err, res) => {    
+                if (err) throw err;
+                for (let row of res.rows) {
+                    iSumToday=row.sum;
+                }           
+            });
+        
+        
+         var iFriend=0;  
         client.query("SELECT COUNT(*) FROM public.user_history_record where friend='Y';", (err, res) => {    
         if (err) throw err;
             for (let row of res.rows) {
