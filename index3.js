@@ -193,7 +193,7 @@ bot.on('message', function (event) {
             if (err2) throw err2;
                 for (let row of res.rows) {
                     var iTimes=row.get_times;
-                    if(iTimes=="30"||iTimes=="35"){
+                    if(iTimes=="15"||iTimes=="20"){
                         event.reply({
                            /* type: 'template',
                             altText: 'this is a confirm template',
