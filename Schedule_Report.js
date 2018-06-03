@@ -68,7 +68,12 @@ function callback(error, response, body) {
         if (err) throw err;
             for (let row of res.rows) {
                 iFriend=row.count;
-                repMessage="      目前訂閱人數:"+iFriend+"人";
+                repMessage="          當日活躍人數:"+iGetUserToday+"人"+"\n"+
+                                "    當日抽的總次數:"+iSumToday+"次"+"\n"+
+                                "超過30次抽的人數:"+iCOUNT+"人"+"\n"+
+                                "         抽的總次數:"+iSUM+"次"+"\n"+
+                                "      目前訂閱人數:"+iFriend+"人"+"\n"+
+                                "   活躍用戶比率為:"+iCOUNT/iFriend*100+"%";
                 bot.push(ME, {
                     type: 'text',
                     text: repMessage
