@@ -5,9 +5,9 @@ console.log('start index3.js');
 console.log('測試PostgreSQL');
 
 var bot = linebot({
-    channelId: '1574577182',
-    channelSecret: '3e03bec3a3ee9e463ed76dfe7da3baec',
-    channelAccessToken: 'NZXzzQ3o+VJYjHusBszu5QIoff22qIQ88z+F0fOFeFKIYsLtuYPB4XJAGY84LJIBJpv5pnp8fBrC6kO0rG4bq1detk7Qh40XADbWE524z77Sdumg1Hom12AXpa827FVnCoR81vbtvGoDlHCrX5MdmwdB04t89/1O/w1cDnyilFU='
+    channelId: '1585073032',
+    channelSecret: '0af678b6490a7452cd453250d9bd6998',
+    channelAccessToken: 'IOHrMu7KzhjGMinqIDTpoXrxN/NlHFzF3ni7SYAAjN0SShmin7XW/5omFuSGq4tJuTvIdMstBWVpfADfORx7cT0/97Tkx5lmHY2z+77az/1hXYQfRCJGGUbOlSg15drJNNaojTkOSK3bU982zARsZQdB04t89/1O/w1cDnyilFU='
 });
 
 //測試heroku-postgresql
