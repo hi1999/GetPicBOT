@@ -127,58 +127,6 @@ bot.on('message', function (event) {
         }
         request(options, callback);
         ////////////////////////      
-        client.query("SELECT get_times FROM public.user_history_record where user_id= '"+event.source.userId+"'", (err2, res) => {
-            if (err2) throw err2;
-                for (let row of res.rows) {
-                    var iTimes=row.get_times;
-                    if(iTimes=="15"||iTimes=="20"){
-                        event.reply({
-                           /* type: 'template',
-                            altText: 'this is a confirm template',
-                            template: {
-                                type: 'confirm',
-                                text: 'Are you sure?',
-                                actions: [{
-                                type: 'message',
-                                label: 'Yes',
-                                text: 'yes'
-                            }, {
-                                type: 'message',
-                                label: 'No',
-                                text: 'no'
-                            }]
-                        }*/
-                            "type": "template",
-  "altText": "恭喜獲得分享卡",
-  "template": {
-      "type": "carousel",
-      "columns": [
-          {
-            "thumbnailImageUrl": "https://example.com/bot/images/item2.jpg",
-            "imageBackgroundColor": "#000000",
-            "title": "this is menu",
-            "text": "description",
-            "defaultAction": {
-                "type": "uri",
-                "label": "View detail",
-                "uri": "http://example.com/page/222"
-            },
-            "actions": [
-                {
-                    "type": "uri",
-                    "label": "View detail",
-                    "uri": "http://example.com/page/222"
-                }
-            ]
-          }
-      ],
-      "imageAspectRatio": "rectangle",
-      "imageSize": "cover"
-  }
-                    });
-                }
-            }
-        });
         ////////////////////////      
         client.query("UPDATE public.user_history_record SET get_times=get_times+1 WHERE user_id = '"+event.source.userId+"'", (err2, res) => {
                    if (err2) throw err2;
