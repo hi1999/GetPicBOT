@@ -118,7 +118,7 @@ bot.on('message', function (event) {
                              
                             }
     ////////////////////////
-                           else{
+             if(iTimes!="25" && iTimes!="30")              {
         console.log('取得相簿裡的所有照片');
         var request = require('request');
 
