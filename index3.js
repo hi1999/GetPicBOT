@@ -17,6 +17,7 @@ const client = new Client({
     connectionString: process.env.DATABASE_URL,
     ssl: true,
 });
+console.log('log:'+process.env.DATABASE_URL);
 var myDate = new Date();
 var iMonth=myDate.getMonth(); //获取当前月份(0-11,0代表1月)
 var iDay=myDate.getDate(); //获取当前日(1-31)
