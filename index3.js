@@ -103,68 +103,6 @@ bot.on('message', function (event) {
     console.log('replyToken==>', event.replyToken);
     console.log('userId==>', event.source.userId);
     console.log('==================');
-   /* if(event.message.text=='報表'){
-            var iSUM=0;
-            client.query('SELECT SUM(get_times) FROM public.user_history_record;', (err, res) => {    
-                if (err) throw err;
-                for (let row of res.rows) {
-                    iSUM=row.sum;
-                    console.log("抽的總次數:"+iSUM);
-                    console.log(JSON.stringify(row));
-                    console.log('##');
-                }           
-            });
-            var iCOUNT=0;    
-            client.query('SELECT COUNT(*) FROM public.user_history_record where get_times>30;', (err, res) => {    
-                if (err) throw err;
-                for (let row of res.rows) {
-                    iCOUNT=row.count;
-
-                    console.log('##');
-                }           
-            });
-             var iGetUserToday=0; 
-                    client.query("SELECT COUNT(*) FROM public.users_daily_record where user_id like '%"+iMonth+"-"+iDay+"%';", (err, res) => {    
-                        if (err) throw err;
-                        for (let row of res.rows) {
-                            iGetUserToday=row.count;
-                   
-                            console.log('##');
-                        }           
-                 });
-            var iSumToday=0;
-            client.query("SELECT SUM(get_times) FROM public.users_daily_record where user_id like '%"+iMonth+"-"+iDay+"%';", (err, res) => {    
-                if (err) throw err;
-                for (let row of res.rows) {
-                    iSumToday=row.sum;
-                }           
-            });
-        
-            var iFriend=0;    
-            client.query("SELECT COUNT(*) FROM public.user_history_record where friend='Y';", (err, res) => {    
-                if (err) throw err;
-                for (let row of res.rows) {
-                    iFriend=row.count;
-                    console.log(JSON.stringify(row));
-                    event.reply("          當日活躍人數:"+iGetUserToday+"人"+"\n"+
-                                "    當日抽的總次數:"+iSumToday+"次"+"\n"+
-                                "超過30次抽的人數:"+iCOUNT+"人"+"\n"+
-                                "         抽的總次數:"+iSUM+"次"+"\n"+
-                                "      目前訂閱人數:"+iFriend+"人"+"\n"+
-                                "   活躍用戶比率為:"+iCOUNT/iFriend*100+"%"
-                               ).then(function (data) {
-                        console.log('success', data);
-                    }).catch(function (error) {
-                        console.log('Error', error);
-                    });
-                    console.log('##');
-                }           
-            });
-  //      client3.end();
-
-    }
-    /////////////////////////////
-    */
     if(event.message.text=='抽'){
     ////////////////////////
         console.log('取得相簿裡的所有照片');
