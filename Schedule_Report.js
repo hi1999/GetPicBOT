@@ -28,22 +28,21 @@ function callback(error, response, body) {
         });
         client.connect();
         var iFriend=0;    
-        var repMessage="";                                 
+        var repMessage="";  
+        const ME = 'Ubb9f5c58d8fc3755bc871dcda17439f6';
         client.query("SELECT COUNT(*) FROM public.user_history_record where friend='Y';", (err, res) => {    
         if (err) throw err;
             for (let row of res.rows) {
                 iFriend=row.count;
                 repMessage="      目前訂閱人數:"+iFriend+"人";
-                bot.push(ui, {
-                    "type": "image",
-                    "text": imgLink,
-                    "previewImageUrl": imgLink
+                bot.push(ME, {
+                    type: 'text',
+                    text: repMessage
                 });
                 console.log('\t==>push [' + imgLink+'] ok');
             }
             client.end();
         });
-        console.log('\t==>end callback');
     }
 }
 request(options, callback);
