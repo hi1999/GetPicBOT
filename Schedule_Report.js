@@ -27,18 +27,16 @@ function callback(error, response, body) {
             ssl: true,
         });
         client.connect();
-        client.query('SELECT user_id FROM public.user_history_record;', (err, res) => {
-            if (err) throw err;
-
-            console.log("(after callback) Push Image For Each User");
+        var iFriend=0;    
+        var repMessage="";                                 
+        client.query("SELECT COUNT(*) FROM public.user_history_record where friend='Y';", (err, res) => {    
+        if (err) throw err;
             for (let row of res.rows) {
-                var ui = row.user_id;
-                //console.log(JSON.stringify(row));
-                console.log('==>push ui:' + ui);
-                var imgLink = info.data[Math.floor(Math.random() * info.data.length)].link;
+                iFriend=row.count;
+                repMessage="      目前訂閱人數:"+iFriend+"人";
                 bot.push(ui, {
                     "type": "image",
-                    "originalContentUrl": imgLink,
+                    "text": imgLink,
                     "previewImageUrl": imgLink
                 });
                 console.log('\t==>push [' + imgLink+'] ok');
